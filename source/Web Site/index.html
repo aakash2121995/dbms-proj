@@ -1,13 +1,17 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/carousel.css" rel="stylesheet" />
+    <link href="Content/login.css" rel="stylesheet" />
 </head>
 <body>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <div class=" row col-lg-push-2 col-lg-8 col-md-10 col-md-push-1 col-sm-12" >
+    <script src="Scripts/carousel.js"></script>
+    <div class=" row col-lg-push-2 col-lg-8 col-md-10 col-md-push-1 col-sm-12">
         <!-- Navigation Bar Started -->
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid ">
@@ -19,7 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="index.html">Mokart</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,25 +33,124 @@
                         <li>
                             <form class="navbar-form navbar-left input-group-lg" role="search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-group-lg"  placeholder="Search">
+                                    <input type="text" class="form-control form-group-lg" placeholder="Search">
                                 </div>
                                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                             </form>
                         </li>
-                        
+
                     </ul>
-                    
+
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Log In</a></li>
+                        
+                            <!-- BEGIN # BOOTSNIP INFO -->
+
+       
+                <li><a href="#"  role="button" data-toggle="modal" data-target="#login-modal">Sign In</a>
+
+        <!-- END # BOOTSNIP INFO -->
+
+        <!-- BEGIN # MODAL LOGIN -->
+              <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" align="center">
+                            <img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                
+                        <!-- Begin # DIV Form -->
+                        <div id="div-forms">
+                
+                            <!-- Begin # Login Form -->
+                            <form id="login-form">
+                                <div class="modal-body">
+                                    <div id="div-login-msg">
+                                        <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                        <span id="text-login-msg">Type your username and password.</span>
+                                    </div>
+                                    <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                                    <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                    </div>
+                                    <div>
+                                        <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                        <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End # Login Form -->
+                    
+                            <!-- Begin | Lost Password Form -->
+                            <form id="lost-form" style="display:none;">
+                                <div class="modal-body">
+                                    <div id="div-lost-msg">
+                                        <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                        <span id="text-lost-msg">Type your e-mail.</span>
+                                    </div>
+                                    <input id="lost_email" class="form-control" type="text" placeholder="E-Mail " required>
+                                </div>
+                                <div class="modal-footer">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                                    </div>
+                                    <div>
+                                        <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                        <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End | Lost Password Form -->
+                    
+                            <!-- Begin | Register Form -->
+                            <form id="register-form" style="display:none;">
+                                <div class="modal-body">
+                                    <div id="div-register-msg">
+                                        <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                        <span id="text-register-msg">Register an account.</span>
+                                    </div>
+                                    <input id="register_username" class="form-control" type="text" placeholder="Username " required>
+                                    <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                                    <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                    </div>
+                                    <div>
+                                        <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                        <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End | Register Form -->
+                    
+                        </div>
+                        <!-- End # DIV Form -->
+                
+                    </div>
+        
+            <!-- END # MODAL LOGIN -->
+                        </li>
                         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart">  Cart</span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">My Orders</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                               
                                 <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -65,9 +168,9 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#collapse" href="#collapse-one">
-                                             <span class="glyphicon glyphicon-triangle-bottom"> Men </span>
+                                            <span class="glyphicon glyphicon-triangle-bottom"> Men </span>
                                         </a>
-                                        
+
                                     </h4>
                                 </div>
                                 <div id="collapse-one" class="panel-collapse collapse in ">
@@ -116,8 +219,9 @@
                         </div>
                     </div>
                 </div>
-              
+
             </div>
+
             <div class="col-lg-9 col-md-9 col-sm-9">
                 <div id="my-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -127,7 +231,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="item active">
-                            
+
                             <img alt="First slide" src="Img/main-slider1.jpg" />
                             <div class="carousel-caption">
                                 <h3>Caption heading 1</h3>
@@ -158,7 +262,158 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div class="col-xs-12">
+                <h1>Trending Now</h1>
+
+                <div class="well">
+                    <div id="myCarousel" class="carousel slide">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x">
+                                            <img src="Img/product1.jpg" alt="Image" class="img-responsive" />
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product3_2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product1_2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                        </div>
+                        <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                    </div>
+                    <!--/myCarousel-->
+                </div>
+                <!--/well-->
+            </div>
+        </div>
+
+        <div>
+            <div class="col-xs-12">
+                <h1>Men Apparels</h1>
+
+                <div class="well">
+                    <div id="myCarousel2" class="carousel slide">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x">
+                                            <img src="Img/product1.jpg" alt="Image" class="img-responsive" />
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product3_2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x"><img src="Img/product1_2.jpg" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                        </div>
+                        <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+
+                        <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
+                    </div>
+                    <!--/myCarousel-->
+                </div>
+                <!--/well-->
+            </div>
+        </div>
     </div>
-    
+
 </body>
 </html>
