@@ -42,10 +42,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\carousel.css" />
+    <Content Include="Content\login.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Img\detailsquare.jpg" />
     <Content Include="Img\main-slider1.jpg" />
     <Content Include="Img\main-slider2.jpg" />
     <Content Include="Img\main-slider3.jpg" />
+    <Content Include="Img\product1.jpg" />
+    <Content Include="Img\product1_2.jpg" />
+    <Content Include="Img\product2.jpg" />
+    <Content Include="Img\product3_2.jpg" />
     <Content Include="index.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -56,6 +63,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\carousel.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
