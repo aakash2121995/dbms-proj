@@ -4,7 +4,7 @@ error_reporting(0);
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'jmicart');
-define('DB_USERNAME', 'jmicart@localhost');
+define('DB_USERNAME', 'jmicart');
 define('DB_PASSWORD', '1234');
 
 // Connect and Select Database
