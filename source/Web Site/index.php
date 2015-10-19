@@ -1,5 +1,16 @@
-﻿
+
 <!DOCTYPE html>
+
+<?php 
+    require "session.php";
+
+    if($_SESSION['loggedin'] == 1)
+        echo '<script src="Scripts/loggedIn.js"></script>' ;
+
+    else if($_SESSION['incorrect'] == 1)
+        echo '<script src="Scripts/notLoggedIn.js"></script>' ;
+?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -46,7 +57,7 @@
                             <!-- BEGIN # BOOTSNIP INFO -->
 
        
-                <li><a href="#"  role="button" data-toggle="modal" data-target="#login-modal">Sign In</a>
+                <li><a  id ="SignIn"  href="#"  role="button" data-toggle="modal" data-target="#login-modal">Sign In</a>
 
         <!-- END # BOOTSNIP INFO -->
 
@@ -65,14 +76,14 @@
                         <div id="div-forms">
                 
                             <!-- Begin # Login Form -->
-                            <form id="login-form">
+                            <form id="login-form" action="login.php" method = "POST">
                                 <div class="modal-body">
                                     <div id="div-login-msg">
                                         <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                         <span id="text-login-msg">Type your username and password.</span>
                                     </div>
-                                    <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-                                    <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                    <input id="login_username" name="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                                    <input id="login_password" name = "login_password" class="form-control" type="password" placeholder="Password" required>
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox"> Remember me
@@ -142,17 +153,17 @@
         
             <!-- END # MODAL LOGIN -->
                         </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart">  Cart</span></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                        <li><a  href="#"><span class="glyphicon glyphicon-shopping-cart" >  Cart</span></a></li>
+                        <!-- <li class="dropdown">
+                            <a  href="#" class='dropdown-toggle' data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a>
+                            <ul  class="dropdown-menu ">
                                 <li><a href="#">My Orders</a></li>
                                 <li><a href="#">My Wishlist</a></li>
                                
                                 <li class="divider"></li>
                                 <li><a href="#">Log Out</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

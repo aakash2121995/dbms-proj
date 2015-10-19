@@ -7,7 +7,8 @@ if(isset($_POST['user'],  $_POST['pass']))
   $uName = $_POST['user']; $pass = $_POST['pass'];
   // Check whether the user already exists
   // Fixme: SQL Injection Here!
-  $result = mysql_query("SELECT PassHash, UserName FROM CUSTOMER WHERE UserName = '$uName'");
+  $result = mysql_query("SELECT PassHash_CUST, UserName_CUST FROM CUSTOMER WHERE UserName = '$uName';");
+  echo $result;
   if (mysql_num_rows($result) > 0)
   {
     $row = mysql_fetch_row($result);
