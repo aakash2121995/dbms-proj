@@ -1,6 +1,6 @@
 <?php
-require '/connect.php';
-require 'session.php';
+require '/config/connect.php';
+require '/config/session.php';
 
 if(isset($_POST['user'],  $_POST['pass']))
 {
