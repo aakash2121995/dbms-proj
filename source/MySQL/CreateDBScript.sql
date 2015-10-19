@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema jmicart
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema jmicart
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `jmicart` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `jmicart` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`MANUFACTURER`
+-- Table `jmicart`.`MANUFACTURER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MANUFACTURER` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`MANUFACTURER` (
   `ID_MANU` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `Name_MANU` NVARCHAR(100) NOT NULL COMMENT '',
   `Website_MANU` NVARCHAR(50) NULL COMMENT '',
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CATEGORY`
+-- Table `jmicart`.`CATEGORY`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CATEGORY` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`CATEGORY` (
   `ID_CATE` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `Name_CATE` NVARCHAR(50) NOT NULL COMMENT '',
   `Description_CATE` LONGTEXT NULL COMMENT '',
@@ -39,9 +39,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUCT`
+-- Table `jmicart`.`PRODUCT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCT` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`PRODUCT` (
   `ID_PROD` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `Name_PROD` NVARCHAR(100) NOT NULL COMMENT '',
   `Description_PROD` LONGTEXT NULL COMMENT 'Multiline descriptions ????',
@@ -60,21 +60,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCT` (
   INDEX `FK_PRODUCT_CATEGORY1_idx` (`CATEGORY_ID_CATE` ASC)  COMMENT '',
   CONSTRAINT `FK_PRODUCT_MANUFACTURER`
     FOREIGN KEY (`MANUFACTURER_ID_MANU`)
-    REFERENCES `mydb`.`MANUFACTURER` (`ID_MANU`)
+    REFERENCES `jmicart`.`MANUFACTURER` (`ID_MANU`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `FK_PRODUCT_CATEGORY1`
     FOREIGN KEY (`CATEGORY_ID_CATE`)
-    REFERENCES `mydb`.`CATEGORY` (`ID_CATE`)
+    REFERENCES `jmicart`.`CATEGORY` (`ID_CATE`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CUSTOMER`
+-- Table `jmicart`.`CUSTOMER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CUSTOMER` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`CUSTOMER` (
   `UserName_CUST` NVARCHAR(50) NOT NULL COMMENT '',
   `Email_CUST` VARCHAR(50) NOT NULL COMMENT '',
   `PassHash_CUST` NVARCHAR(512) NOT NULL COMMENT '',
@@ -93,9 +93,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`REVIEW`
+-- Table `jmicart`.`REVIEW`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`REVIEW` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`REVIEW` (
   `Rating_REVI` DECIMAL(3,2) NOT NULL COMMENT '',
   `Title_REVI` NVARCHAR(100) NULL COMMENT '',
   `Text_REVI` LONGTEXT NULL COMMENT '',
@@ -106,21 +106,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`REVIEW` (
   INDEX `FK_REVIEW_CUSTOMER1_idx` (`CUSTOMER_UserName_CUST` ASC)  COMMENT '',
   CONSTRAINT `FK_REVIEW_PRODUCT1`
     FOREIGN KEY (`PRODUCT_ID_PROD`)
-    REFERENCES `mydb`.`PRODUCT` (`ID_PROD`)
+    REFERENCES `jmicart`.`PRODUCT` (`ID_PROD`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `FK_REVIEW_CUSTOMER1`
     FOREIGN KEY (`CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`CUSTOMER` (`UserName_CUST`)
+    REFERENCES `jmicart`.`CUSTOMER` (`UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ADMIN`
+-- Table `jmicart`.`ADMIN`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ADMIN` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`ADMIN` (
   `ID_ADMIN` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `UserName_ADMIN` NVARCHAR(50) NOT NULL COMMENT '',
   `PassHash_ADMIN` NVARCHAR(512) NOT NULL COMMENT '',
@@ -135,9 +135,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ADDRESS`
+-- Table `jmicart`.`ADDRESS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ADDRESS` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`ADDRESS` (
   `Line1_ADDR` NVARCHAR(100) NOT NULL COMMENT '',
   `Line2_ADDR` NVARCHAR(100) NOT NULL COMMENT '',
   `Line3_ADDR` NVARCHAR(100) NOT NULL COMMENT '',
@@ -149,16 +149,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ADDRESS` (
   PRIMARY KEY (`CUSTOMER_UserName_CUST`)  COMMENT '',
   CONSTRAINT `FK_ADDRESS_CUSTOMER1`
     FOREIGN KEY (`CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`CUSTOMER` (`UserName_CUST`)
+    REFERENCES `jmicart`.`CUSTOMER` (`UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ORDER`
+-- Table `jmicart`.`ORDER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ORDER` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`ORDER` (
   `ID_ORDR` INT NOT NULL COMMENT '',
   `Date_ORDR` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
   `BillingName_ORDR` NVARCHAR(150) NOT NULL COMMENT '',
@@ -172,43 +172,43 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ORDER` (
   INDEX `FK_ORDER_ADDRESS1_idx` (`ADDRESS_CUSTOMER_UserName_CUST` ASC)  COMMENT '',
   CONSTRAINT `FK_ORDER_CUSTOMER1`
     FOREIGN KEY (`CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`CUSTOMER` (`UserName_CUST`)
+    REFERENCES `jmicart`.`CUSTOMER` (`UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_ADDRESS1`
     FOREIGN KEY (`ADDRESS_CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`ADDRESS` (`CUSTOMER_UserName_CUST`)
+    REFERENCES `jmicart`.`ADDRESS` (`CUSTOMER_UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CART`
+-- Table `jmicart`.`CART`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CART` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`CART` (
   `NumOfItems_CART` INT NOT NULL COMMENT '',
   `TotalPrice_CART` DECIMAL(10,2) NOT NULL COMMENT '',
   `ORDER_CUSTOMER_UserName_CUST` NVARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`ORDER_CUSTOMER_UserName_CUST`)  COMMENT '',
   CONSTRAINT `FK_CART_ORDER1`
     FOREIGN KEY (`ORDER_CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`ORDER` (`CUSTOMER_UserName_CUST`)
+    REFERENCES `jmicart`.`ORDER` (`CUSTOMER_UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CART_ITEM`
+-- Table `jmicart`.`CART_ITEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CART_ITEM` (
+CREATE TABLE IF NOT EXISTS `jmicart`.`CART_ITEM` (
   `Quantity_ITEM` INT NOT NULL DEFAULT 1 COMMENT '',
   `CART_ORDER_CUSTOMER_UserName_CUST` NVARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`CART_ORDER_CUSTOMER_UserName_CUST`)  COMMENT '',
   CONSTRAINT `FK_CART_ITEM_CART1`
     FOREIGN KEY (`CART_ORDER_CUSTOMER_UserName_CUST`)
-    REFERENCES `mydb`.`CART` (`ORDER_CUSTOMER_UserName_CUST`)
+    REFERENCES `jmicart`.`CART` (`ORDER_CUSTOMER_UserName_CUST`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
