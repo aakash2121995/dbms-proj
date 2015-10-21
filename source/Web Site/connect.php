@@ -3,7 +3,7 @@
 error_reporting(0);
 $_SESSION['loggedin'] = 0;
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'mydb');
+define('DB_NAME', 'jmicart');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'mysql/@@$hu0711');
 
