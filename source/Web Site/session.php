@@ -9,7 +9,6 @@ if($_SESSION['loggedin'] == 1)
   
   $row = mysql_fetch_row($result);
 
-  $_SESSION['user'] = $row[0];
   $_SESSION['name'] = $row[1];
   //echo  "<script> alert(\"$row[0]\")</script>";
 

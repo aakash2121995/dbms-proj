@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 
 <?php 
-    require "session.php";
-
+    require_once "connect.php";
     if($_SESSION['loggedin'] == 1)
         echo '<script src="Scripts/loggedIn.js"></script>' ;
 
@@ -34,6 +33,7 @@ function doSomething() {
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/carousel.js"></script>
+    <script src="Scripts/login.js"></script>
     <div class=" row col-lg-push-2 col-lg-8 col-md-10 col-md-push-1 col-sm-12">
         <!-- Navigation Bar Started -->
         <nav class="navbar navbar-default" role="navigation">
@@ -167,7 +167,7 @@ function doSomething() {
             <!-- END # MODAL LOGIN -->
                         </li>
                         <li><a  href="cart.php"><span class="glyphicon glyphicon-shopping-cart" >  Cart</span></a></li>
-                        <li id = "Account" class="dropdown"><a  href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a><ul  class="dropdown-menu "><li><a href="#">My Orders</a></li><li><a href="#">My Wishlist</a></li><li class="divider"></li><li> <a href="#" onclick="doSomething()">Log Out</a></li></ul></li>
+                        <li id = "Account" class="dropdown"><a  href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a><ul  class="dropdown-menu "><li><a href="myProfile.php">My Profile</a></li><li><a href="#">My Wishlist</a></li><li class="divider"></li><li> <a href="#" onclick="doSomething()">Log Out</a></li></ul></li>
                        
                     </ul>
                 </div><!-- /.navbar-collapse -->

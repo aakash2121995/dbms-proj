@@ -19,11 +19,32 @@ if(isset($_POST['login_username'],  $_POST['login_password']))
       
       $_SESSION['loggedin'] = 1;
       $_SESSION['user'] = $uName;
+      // echo "Fuck";
+      // echo "<script> alert('$_SESSION[user]')</script>";
 
-      $result = mysql_query("SELECT FName_CUST FROM CUSTOMER WHERE UserName = '$row[1]'");
+      $result = mysql_query("SELECT FName_CUST,LName_CUST,DOB_CUST,Gender_CUST,Phone_CUST,Email_CUST FROM CUSTOMER WHERE UserName_CUST = '$row[1]'");
       $row = mysql_fetch_row($result);
 
-      $_SESSION['name'] = $row[0];
+      $_SESSION['Fname'] = $row[0];
+      $_SESSION['Lname'] = $row[1];
+      $_SESSION['DOB'] = $row[2];
+      $_SESSION['Gender'] = $row[3];
+      $_SESSION['Phone'] = $row[4];
+      $_SESSION['Email'] = $row[5];
+
+      $result = mysql_query("SELECT * FROM `address` WHERE CUSTOMER_UserName_CUST ='$uName'");
+      $row = mysql_fetch_row($result);
+
+      $_SESSION['Line1'] = $row[0];
+      $_SESSION['Line2'] = $row[1];
+      $_SESSION['Line3'] = $row[2];
+      $_SESSION['City'] = $row[3];
+      $_SESSION['Pincode'] = $row[4];
+      $_SESSION['State'] = $row[5];
+      $_SESSION['Country'] = $row[6];
+
+
+
       echo '
       <script src="Scripts/jquery-1.9.1.min.js"></script>
       <script>
