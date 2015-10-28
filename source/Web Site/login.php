@@ -22,7 +22,7 @@ if(isset($_POST['login_username'],  $_POST['login_password']))
       // echo "Fuck";
       // echo "<script> alert('$_SESSION[user]')</script>";
 
-      $result = mysql_query("SELECT FName_CUST,LName_CUST,DOB_CUST,Gender_CUST,Phone_CUST,Email_CUST FROM CUSTOMER WHERE UserName_CUST = '$row[1]'");
+      $result = mysql_query("SELECT FName_CUST,LName_CUST,DOB_CUST,Gender_CUST,Phone_CUST,Email_CUST,ProfilePicPath_CUST FROM CUSTOMER WHERE UserName_CUST = '$row[1]'");
       $row = mysql_fetch_row($result);
 
       $_SESSION['Fname'] = $row[0];
@@ -31,7 +31,8 @@ if(isset($_POST['login_username'],  $_POST['login_password']))
       $_SESSION['Gender'] = $row[3];
       $_SESSION['Phone'] = $row[4];
       $_SESSION['Email'] = $row[5];
-
+      $_SESSION['Password'] = $pass;
+      $_SESSION['ProfilePic'] = $row[6];
       $result = mysql_query("SELECT * FROM `address` WHERE CUSTOMER_UserName_CUST ='$uName'");
       $row = mysql_fetch_row($result);
 

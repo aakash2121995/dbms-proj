@@ -1,4 +1,6 @@
+        <script src="Scripts/jquery-1.9.1.min.js"></script>
         <?php
+
         require_once "header.php" ?>
         <!-- Navigation Bar Ender -->
         <div class="row">

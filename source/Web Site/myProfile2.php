@@ -1,5 +1,76 @@
 <script src="Scripts/jquery-1.9.1.min.js"></script>
-<script src="Scripts/profile.js"></script>
+<script type="text/javascript">
+$(function(){
+  $('#editAddress').click(function(){
+
+    $('#Address').addClass('hidden')
+    $('#AddressForm').removeClass('hidden');
+  })
+  $('#editProfile').click(function(){
+
+    $('#Profile').addClass('hidden')
+    $('#ProfileForm').removeClass('hidden');
+  })
+  $('#cancelAddress').click(function(){
+    $('#Address').removeClass('hidden')
+    $('#AddressForm').addClass('hidden');
+  })
+  $('.has-feedback  .form-control').blur(function(){
+     var formItem = $(this);
+      var value =  formItem.val()
+
+      if(this.name=="PIN"){
+        
+      if(!value.match(/^\d{6}$/))
+      {
+        formItem.next().removeClass('glyphicon-ok')
+        formItem.next().addClass('glyphicon-remove')
+        formItem.parent().removeClass('has-success')
+        formItem.parent().addClass('has-error')
+      } 
+      else
+      {
+        formItem.next().removeClass('glyphicon-remove')
+        formItem.next().addClass('glyphicon-ok')
+        formItem.parent().addClass('has-success')
+        formItem.parent().removeClass('has-error')
+      } 
+    }
+     else{
+      if(formItem.val() == "")
+      {
+        formItem.next().removeClass('glyphicon-ok')
+        formItem.next().addClass('glyphicon-remove')
+        formItem.parent().removeClass('has-success')
+        formItem.parent().addClass('has-error')
+      } 
+      else
+      {
+        formItem.next().removeClass('glyphicon-remove')
+        formItem.next().addClass('glyphicon-ok')
+        formItem.parent().addClass('has-success')
+        formItem.parent().removeClass('has-error')
+      }
+      } 
+    
+
+     var State  = $('#State')
+     var City = $('#City')
+      var Country = $('#Country')
+      var Pin = $('#PostCode')
+      var Line1 = $('#AddressLine1')
+      var Line2 = $('#AddressLine2')
+     if(Line1.hasClass('has-success')&&Line2.hasClass('has-success')&&Pin.hasClass('has-success')&&Country.hasClass('has-success')&&State.hasClass('has-success'))
+      {
+        $('#saveAddress').removeAttr('disabled');
+      }
+     //alert($('div').hasClass('has-error'))
+   //  alert()
+
+  })
+  
+}) 
+</script>
 <?php
 require_once("header.php");
 ?>
@@ -11,7 +82,7 @@ require_once("header.php");
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1default" data-toggle="tab">Personal Info</a></li>
                             <li><a href="#tab2default" data-toggle="tab">Address</a></li>
-                            <li><a href="#tab3default" data-toggle="tab">Change Password</a></li>
+                            <li><a href="#tab3default" data-toggle="tab">Orders</a></li>
                         </ul>
                 </div>
                 <div class="panel-body">
@@ -21,7 +92,7 @@ require_once("header.php");
                                 <div class="row">
                                     <div id="Profile">
                                         <div class="col-sm-3 col-md-3">
-                                            <img src="<?php echo "$_SESSION[ProfilePic]"?>"
+                                            <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
                                                 alt="" class="img-rounded img-responsive" />
                                         </div>
                                         <div class="col-sm-6 col-md-6">
@@ -55,8 +126,8 @@ require_once("header.php");
                                   <legend>Profile Details</legend>
 
                                     <div  class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="textinput">* First Name</label>
-                                      <div id="Fname" class="col-sm-8" >
+                                      <label class="col-sm-2 control-label" for="textinput">* First Name</label>
+                                      <div id="Fname" class="col-sm-10" >
                                         <input name="Fname" type="text"  class="form-control">
                                         <span class='glyphicon form-control-feedback'></span>
                                       </div>
@@ -64,41 +135,41 @@ require_once("header.php");
 
                                     <!-- Text input-->
                                     <div class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="textinput">* Last Name</label>
-                                      <div id="Lname" class="col-sm-8">
+                                      <label class="col-sm-2 control-label" for="textinput">* Last Name</label>
+                                      <div id="Lname" class="col-sm-10">
                                         <input name="Lname" type="text"  class="form-control">
                                         <span class='glyphicon form-control-feedback'></span>
                                       </div>
                                     </div>
 
+                                    <div class="form-group ">
+                                      <label class="col-sm-2 control-label" for="textinput">* Email</label>
+                                      <div id ="Email" class="col-sm-10">
+                                        <input name="Email" type="text" id="Address Line 3" class="form-control">
+
+                                      </div>
+                                    </div>
+
+                                    <!-- Text input-->
                                     <div class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="textinput">* Email</label>
-                                      <div id ="Email" class="col-sm-8">
-                                        <input name="Email" type="text" class="form-control">
+                                      <label class="col-sm-2 control-label" for="textinput">* DOB</label>
+                                      <div id="DOB" class="col-sm-10">
+                                        <input name="DOB" type="text"  class="form-control">
                                         <span class='glyphicon form-control-feedback'></span>
                                       </div>
                                     </div>
 
                                     <!-- Text input-->
                                     <div class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="date">* DOB</label>
-                                      <div id="DOB" class="col-sm-8">
-                                        <input name="DOB" type="date"  class="form-control">
-                                        <span class='glyphicon form-control-feedback'></span>
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="textinput">* Gender</label>
+                                      <label class="col-sm-2 control-label" for="textinput">* Gender</label>
                                       <div id="Gender" class="col-sm-4">
                                         <input name="Gender" type="text"  class="form-control">
                                         <span class='glyphicon form-control-feedback'></span>
                                       </div>
                                     </div>
                                     <div class="form-group has-feedback">
-                                      <label class="col-sm-4 control-label" for="textinput">* Phone</label>
-                                      <div id="Phone" class="col-sm-5">
+                                      <label class="col-sm-2 control-label" for="textinput">* Phone</label>
+                                      <div id="Phone" class="col-sm-4">
                                         <input name="Phone" type="text"  class="form-control">
                                         <span class='glyphicon form-control-feedback'></span>
                                       </div>
@@ -126,7 +197,7 @@ require_once("header.php");
                                <div class="row" >
                                     <div id="Address">
                     <div class="col-sm-3 col-md-3">
-                    <img src="<?php echo $_SESSION['ProfilePic']?>"
+                    <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
                     alt="" class="img-rounded img-responsive" />
                     </div>
                      <div class="col-sm-6 col-md-6 ">
@@ -239,55 +310,7 @@ require_once("header.php");
                                </div>
                             </div>
                         </div>
-      <div class="tab-pane fade" id="tab3default"><div id = "PasswordForm" class="col-md-6 col-md-offset-3">
-      <form class="form-horizontal" role="form"  method = "post" action="updatePassword.php" >
-
-        <fieldset>
-
-          <!-- Form Name -->
-          <legend>Change Password</legend>
-
-          <!-- Text input-->
-          <div  class="form-group has-feedback">
-            <label class="col-sm-5 control-label" for="password">* Old Password</label>
-            <div id="OldPassword" class="col-sm-7" >
-              <input name="OldPassword" type="password"  class="form-control">
-              <span class='glyphicon form-control-feedback'></span>
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group has-feedback">
-            <label class="col-sm-5 control-label" for="password">* New Password</label>
-            <div id="NewPassword" class="col-sm-7">
-              <input name="NewPassword" type="password"  class="form-control">
-              <span class='glyphicon form-control-feedback'></span>
-            </div>
-          </div>
-
-          <div class="form-group has-feedback">
-            <label class="col-sm-5 control-label" for="password">* Confirm Password</label>
-            <div id = "ConfirmPassword" class="col-sm-7">
-              <input name="ConfirmPassword" type="password"  class="form-control">
-            <span class='glyphicon form-control-feedback'></span>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="pull-right">
-                
-                <button id="savePassword" type = "submit" value="submit" class="btn btn-primary" disabled="disabled" >Save</button>
-              </div>
-            </div>
-          </div>
-
-         
-
-        </fieldset>
-      </form>
-      
-    </div></div>
+                        <div class="tab-pane fade" id="tab3default">Default 3</div>
                         <div class="tab-pane fade" id="tab4default">Default 4</div>
                         <div class="tab-pane fade" id="tab5default">Default 5</div>
                     </div>

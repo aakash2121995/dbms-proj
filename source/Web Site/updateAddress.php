@@ -18,7 +18,7 @@ $result = mysql_query($query);
 // echo mysql_num_rows($result);
 // $row = mysql_fetch_row($result);
 // echo $row; 
-echo $_SESSION['user'];
+
 echo '<script>
       window.location = "myProfile.php"
       

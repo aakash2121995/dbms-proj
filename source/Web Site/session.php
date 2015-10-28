@@ -1,6 +1,7 @@
+
 <?php
 session_start();
-echo '<script src="Scripts/jquery-1.9.1.min.js"></script>';
+
 if($_SESSION['loggedin'] == 1)
 {
   $userid = $_SESSION['user'];
